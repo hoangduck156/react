@@ -11,13 +11,13 @@ export default function Home() {
 
   const storageKey = `todos_${user.email}`;
 
-  // Load todo từ localStorage khi vào trang
+  // Load danh sách todo từ localStorage khi vào trang
   useEffect(() => {
     const savedTodos = JSON.parse(localStorage.getItem(storageKey)) || [];
     setTodos(savedTodos);
   }, [storageKey]);
 
-  // Thêm todo mới
+  // Thêm công việc mới
   const addTodo = () => {
     if (!task.trim()) {
       message.warning('Vui lòng nhập nội dung công việc');
@@ -37,7 +37,7 @@ export default function Home() {
     localStorage.setItem(storageKey, JSON.stringify(updated));
   };
 
-  // Xóa todo
+  // Xóa công việc
   const deleteTodo = (index) => {
     const updated = todos.filter((_, i) => i !== index);
     setTodos(updated);

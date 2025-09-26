@@ -1,8 +1,29 @@
 .container {
-  max-width: 600px;
+  max-width: 500px;
   margin: 40px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.todo-input {
+  margin-bottom: 20px;
+}
+
+.quote {
+  margin-top: 30px;
+  font-style: italic;
+  color: #888;
+  text-align: center;
+}
+
+.ant-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ant-checkbox-wrapper {
+  flex: 1;
 }

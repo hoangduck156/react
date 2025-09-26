@@ -1,6 +1,6 @@
 import { Form, Input, Button, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { validateEmail, validatePassword } from '../utils/validators';
+import { validateEmail, validatePassword } from '../utils/validator';
 
 export default function Register() {
   const navigate = useNavigate();
