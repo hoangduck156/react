@@ -13,13 +13,12 @@ export default function Login() {
       message.error('Email hoặc mật khẩu không hợp lệ');
       return;
     }
-    const users = JSON.parse(localStorage.getItem('users')) || {};
-    if (!users[email] || users[email].password !== password) {
+    const success = login(email, password);
+    if (!success) {
       message.error('Email hoặc mật khẩu không đúng');
       return;
     }
-    login(email);
-    navigate('/home');
+    message.success('Đăng nhập thành công!', 1, () => navigate('/home'));
   };
 
   return (

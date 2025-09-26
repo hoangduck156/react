@@ -1,15 +1,24 @@
 import { Input, Button, Typography, List, message } from 'antd';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import TodoItem from '../components/TodoItem';
 import '../App.css';
 
 export default function Home() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [task, setTask] = useState('');
   const [todos, setTodos] = useState([]);
 
-  const storageKey = `todos_${user.email}`;
+  // Nếu không có user (chưa đăng nhập), chuyển hướng về login
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+  const storageKey = user ? `todos_${user.email}` : '';
 
   // Load danh sách todo từ localStorage khi vào trang
   useEffect(() => {
@@ -20,7 +29,7 @@ export default function Home() {
   // Thêm công việc mới
   const addTodo = () => {
     if (!task.trim()) {
-      message.warning('Vui lòng nhập nội dung công việc');
+      message.warning('Thêm task mới');
       return;
     }
     const newTodos = [...todos, { text: task, done: false }];
@@ -46,7 +55,10 @@ export default function Home() {
 
   return (
     <div>
-      <Typography.Title level={3}>Your To Do</Typography.Title>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Typography.Title level={3}>Your To Do</Typography.Title>
+        <Button onClick={() => { logout(); navigate('/login'); }} danger>Đăng xuất</Button>
+      </div>
 
       <div className="todo-input">
         <Input
